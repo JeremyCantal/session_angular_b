@@ -1,0 +1,66 @@
+<form #myForm="ngForm" (ngSubmit)="saveRocket()">
+    <div class="form-group">
+        <label for="nom">Nom:</label>
+        <input class="form-control" type="text" name="nom" [(ngModel)]="rocket.nom" required #nom="ngModel">
+    </div>
+    <div [hidden]="nom.valid || nom.pristine">
+        Le nom est obligatoire
+    </div>
+    <div class="form-group">
+        <label for="annee">Année:</label>
+        <input class="form-control" type="text" name="annee" [(ngModel)]="rocket.annee" required #annee="ngModel"> 
+    </div>
+    <div [hidden]="annee.valid || annee.pristine">
+        L'année est obligatoire
+    </div>
+    <div class="form-group">
+        <label for="organisation">Organisation:</label>
+        <input class="form-control" type="text" name="organisation" [(ngModel)]="rocket.organisation" required #organisation="ngModel"> 
+    </div>
+    <div [hidden]="organisation.valid || organisation.pristine">
+        L'organisme est obligatoire
+    </div>
+    <div class="form-group">
+        <label for="destination">Destination:</label>
+        <input class="form-control" type="text" name="destination" [(ngModel)]="rocket.destination" required #destination="ngModel"> 
+    </div>
+    <div [hidden]="destination.valid || destination.pristine">
+        La destination est obligatoire
+    </div>
+    <div class="form-group">
+        <label for="createdAt">Création:</label>
+        <input class="form-control" type="text" name="createdAt" [(ngModel)]="rocket.createdAt" required #createdAt="ngModel"> 
+    </div>
+    <div [hidden]="createdAt.valid || createdAt.pristine">
+        La date de création est obligatoire
+    </div>
+    <div class="form-group">
+        <label for="updatedAt">Amélioration:</label>
+        <input class="form-control" type="text" name="updatedAt" [(ngModel)]="rocket.updatedAt" required #updatedAt="ngModel"> 
+    </div>
+    <div [hidden]="updatedAt.valid || updatedAt.pristine">
+        L'amélioration est obligatoire
+    </div>
+    <div>
+        <button class="btn btn-success" [disabled]="!myForm.valid">
+            Ajouter
+        </button>
+    </div>
+</form>
+<ul class="list-group">
+    <li *ngFor="let elt of rockets" class="list-group-item">
+        {{ elt.nom }} {{ elt.annee }} {{ elt.organisation }}
+        <br>
+        <button class="btn btn-success" (click)="rocketDetails(elt.id)">
+            Détails
+        </button>
+        &nbsp;
+        <button class="btn btn-primary" (click)="rocketEdit(elt.id)">
+            Editer
+        </button>
+        &nbsp;
+        <button class="btn btn-danger" (click)="deleteRocket(elt.id)">
+            Supprimer
+        </button>
+    </li>
+</ul>
